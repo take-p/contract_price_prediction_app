@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" style="background: #ffffff">
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <h1>落札価格予測</h1>
+    </div>
+  </div>
+
+  <!-- flash -->
+  {#% for message in get_flashed_messages() %}
+  <div class="alert alert-danger">{{ message }}</div>
+  {% endfor %#}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+  
+  <!-- ファイル選択 -->
+  <div class="row">
+    <div class="col-md-12 mb-2">
+      {% include "files_selector.html" %}
+    </div>
+  </div>
+
+
+  {% if images %}
+    <div class="row mt-5" style="">
+      <div class="col-md-12">
+        <h2>予想落札価格</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% for i, j in images %}
+          <div class="d-inline-block mr-1 mt-1">
+            <img class="img-thumbnail" src={{ url_for('static', filename='image/tmp/'+i) }} style="height: 128px;">
+            <div class="row justify-content-center">
+              <h6>予想落札価格</h6>
+            </div>
+            <div class="row justify-content-center">
+              <h5>{{ j }}円</h5>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if images %}
+    <div class="row mt-5" style="">
+      <div class="col-md-12">
+        <h2>過去の予測結果</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- 過去の予想落札価格を指定個数表示 -->
+        {% for i, j in images2 %}
+          <div class="d-inline-block mr-1 mt-1">
+            <img class="img-thumbnail" src={{ url_for('static', filename='image/history/'+i) }} style="height: 128px">
+            <div class="row justify-content-center">
+              <h6>予想落札価格</h6>
+            </div>
+            <div class="row justify-content-center">
+              <h5>{{ j }}円</h5>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/select_img_reviewer.js"></script>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link href="//maxcdn."
+
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="" />
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-signin">
+      <span id="reauth-email" class="reauth-email"></span>
+      <input type="email" id="inputEmail" class="form-control" placeholder="メールアドレス" required autofocus>
+      <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" required>
+      <div id="remember" class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me"> ログイン状態を保持する
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ログイン</button>
+    </form>
+  </div>
+</div>
+
+{#
+<form action="login" method="post">
+  <div>
+    email
+    <input type="text" name="email">
+  </div>
+  <div>
+    password
+    <input type="password" name="password">
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+#}
+
+{% endblock %}
